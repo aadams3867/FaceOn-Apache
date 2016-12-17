@@ -25,7 +25,7 @@
                                 ?><p>Your last log out was on <strong>{{ Carbon::createFromFormat('Y-m-d H:i:s', Auth::user()->updated_at)->format('l, m-d-Y, h:i a') }}</strong>.</p><?php
                             }
                         ?>
-                        <p>You are now logged in: <strong>{{ $now }}</strong>.</p>
+                        <p>You are now logged on: <strong>{{ $now }}</strong>.</p>
                     </div>
                 </div>
             </div>

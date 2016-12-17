@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-md-8 panel-display">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Login</div>
+                    <div class="panel-heading">Log On</div>
                     <div class="panel-body">
                         <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}" enctype="multipart/form-data">
                             {{ csrf_field() }}
@@ -57,7 +57,7 @@
                             <div class="form-group">
                                 <div class="col-md-8 col-md-offset-4">
                                     <button type="submit" class="btn btn-primary">
-                                        Log On
+                                        FaceOn
                                     </button>
 
                                     <a class="btn btn-link" href="{{ url('/password/reset') }}">

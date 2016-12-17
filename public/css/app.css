@@ -1,0 +1,56 @@
+/* Makes the Logo aligned to the left instead of centered*/
+#fh5co-header #fh5co-logo {
+    text-align: left;
+}
+
+/* Makes the always-visible dropdown menu header text a white color */
+#fh5co-header nav ul li a {
+    color: white;
+    text-align: right;
+}
+
+/* Makes the open dropdown menu header text aligned to the right*/
+#fh5co-header nav ul li.open a.dropdown-toggle {
+    /*text-align: right;*/
+    /*float: right;*/
+    /*color: red;*/
+}
+
+/* Makes the dropdown menu text a grey color */
+#fh5co-header nav ul li ul li a {
+    color: #85919d;
+}
+
+/* Makes the dropdown menu smaller and aligned to right*/
+#fh5co-header nav ul li.open ul li {
+    margin: 0;
+    text-align: right;
+}
+
+/* Puts the dropdown menu underneath*/
+.dropdown-menu {
+    float: none;
+}
+
+/* Centers h3 and Footer text */
+h3, #fh5co-footer .fh5co-footer-widget {
+    text-align: center;
+}
+
+/* Provides for a darker overlay on the background image */
+.fh5co-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #2a2d36;
+    opacity: .54;
+    z-index: 9;
+}
+
+/* Positions Login and Register panel*/
+.panel-display {
+    z-index: 10;
+    margin-top: 120px;
+}

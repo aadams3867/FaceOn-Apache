@@ -1,5 +1,4 @@
 SetEnv LARAVEL_ENV production
-$_SERVER['LARAVEL_ENV']
 
 <IfModule mod_rewrite.c>
     <IfModule mod_negotiation.c>

@@ -95,7 +95,7 @@
                         <video id="video-stream" style="width: 265x; height: 200px;"></video>
                         <p style="margin-bottom: 6px"><button type="button" id="snapPic" class="btn btn-primary"><img src="/images/camerai.png" alt="Camera icon"></button></p>
                         <div><canvas id="capture"></canvas></div>
-                        <div><img id="canvasImg" alt="Right-click the img to save"></div>
+                        <div><img id="canvasImg" alt="Right-click the img and save"></div>
                     </div>
                 </div>
             </div>

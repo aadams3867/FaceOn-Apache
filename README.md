@@ -1,8 +1,7 @@
 # FaceOn
 
-#### Use the power of facial recognition to log on more securely.
-
-Much like fingerprint identification or phone number verification, facial recognition can provide another layer of security to verify that your logon is valid, but faster and with less hassle.
+#### Use the power of facial recognition to log on faster, more securely, and with less hassle than other alternatives, like fingerprint identification or phone number verification.
+----------
 
 ## Design Layout
 

@@ -1,6 +1,6 @@
 # FaceOn
 
-#### Use the power of facial recognition to log on faster, more securely, and with less hassle than other alternatives, like fingerprint identification or phone number verification.
+#### Use the power of facial recognition to log on faster, more securely, and with less hassle than fingerprint identification or phone number verification.
 ----------
 
 ## Design Layout

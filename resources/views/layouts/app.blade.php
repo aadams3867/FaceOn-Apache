@@ -107,6 +107,25 @@
     </div>
     <!-- END #fh5co-page -->
 
+    <footer id="fh5co-footer">
+        <div class="container">
+            <div class="row row-bottom-padded-md">
+
+                <div class="fh5co-footer-widget">
+                    <h3>Contact Me</h3>
+                    <div class="links">
+                        <a href="mailto:aadams3867@gmail.com">aadams3867@gmail.com</a> <br>
+                        <a href="https://github.com/aadams3867/FaceOn-Apache" target="_blank">GitHub</a> <br>
+                        <a href="https://www.linkedin.com/in/angela-adams" target="_blank">LinkedIn</a> <br>
+                        <a href="https://stackoverflow.com/users/6513357/anazul" target="_blank">Stack Overflow</a> <br>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+    <!-- END #fh5co-footer -->
+
     <!-- Scripts -->
     <!-- jQuery Easing -->
     <script src="/js/jquery.easing.1.3.js"></script>

@@ -48,19 +48,30 @@ h3, #fh5co-footer .fh5co-footer-widget {
     margin-top: 120px;
 }
 
-/* Configures Camera panel on Login and Register pages*/
+/* Positions Camera panel*/
 .camera-panel {
-    text-align: center;
-    min-height: 500px;
+    z-index: 10;
+    margin-top: 20px;
 }
 
-/* Configures the Video stream on Login and Register pages*/
-#video-stream {
+/* Configures Camera panel on Login and Register pages*/
+.camera-panel-body {
+    text-align: center;
+    min-height: 280px;
+}
+
+/* Configures the Video stream and Canvas on Login and Register pages*/
+#video-stream, canvas {
     width: 265px;
     height: 200px;
 }
 
 /* Configures the Camera button on Login and Register pages*/
-.camera-panel p {
+.camera-panel-body p {
     margin-bottom: 6px;
+}
+
+/* Configures the Photo text on Login and Register pages*/
+#canvasImg {
+    margin-bottom: 10px;
 }

@@ -107,6 +107,7 @@
     </div>
     <!-- END #fh5co-page -->
 
+    <div class="clearfix"></div>
     <footer id="fh5co-footer">
         <div class="container">
             <div class="row row-bottom-padded-md">

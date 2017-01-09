@@ -5,7 +5,7 @@
     <div class="fh5co-overlay"></div>
     <div class="container">
         <div class="row">
-            <div class="col-md-8 panel-display">
+            <div class="col-md-8 panel-display col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">Log On</div>
                     <div class="panel-body">
@@ -87,15 +87,19 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 panel-display">
+            <div class="col-md-8 panel-display camera-panel col-md-offset-2">
                 <!-- Video display -->
                 <div class="panel panel-default">
                     <div class="panel-heading">Image Capture</div>
-                    <div class="panel-body camera-panel">
-                        <video id="video-stream"></video>
-                        <p><button type="button" id="snapPic" class="btn btn-primary"><img src="/images/camerai.png" alt="Camera icon"></button></p>
-                        <div><canvas id="capture"></canvas></div>
-                        <div><img id="canvasImg" alt="Right-click the img and save"></div>
+                    <div class="panel-body camera-panel-body">
+                        <div class="col-md-6">
+                            <video id="video-stream"></video>
+                            <p><button type="button" id="snapPic" class="btn btn-primary"><img src="/images/camerai.png" alt="Camera icon"></button></p>
+                        </div>
+                        <div class="col-md-6">
+                            <div><canvas id="capture"></canvas></div>
+                            <div><img id="canvasImg" alt="Right-click the img and save"></div>
+                        </div>
                     </div>
                 </div>
             </div>

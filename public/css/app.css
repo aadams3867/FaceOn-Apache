@@ -25,18 +25,13 @@
     float: none;
 }
 
-/* Centers h3 and Footer text */
-h3, #fh5co-footer .fh5co-footer-widget {
-    text-align: center;
-}
-
 /* Provides for a darker overlay on the background image */
 .fh5co-overlay {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
+    bottom: 343px;  /* Leaves space for the Footer*/
     background: #2a2d36;
     opacity: .54;
     z-index: 9;
@@ -74,4 +69,16 @@ h3, #fh5co-footer .fh5co-footer-widget {
 /* Configures the Photo text on Login and Register pages*/
 #canvasImg {
     margin-bottom: 10px;
+}
+
+/* Configures Footer */
+footer {
+    text-align: center;
+    z-index: 10;
+}
+
+/* Configures Footer header */
+#fh5co-footer .fh5co-footer-widget p {
+    font-size: 18px;
+    font-weight: bold;
 }

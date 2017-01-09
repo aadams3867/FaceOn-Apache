@@ -114,7 +114,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Image Capture</div>
                     <div class="panel-body camera-panel">
-                        <video class="video-stream"></video>
+                        <video id="video-stream"></video>
                         <p><button type="button" id="snapPic" class="btn btn-primary"><img src="/images/camerai.png" alt="Camera icon"></button></p>
                         <div><canvas id="capture"></canvas></div>
                         <div><img id="canvasImg" alt="Right-click the img and save as FirstnameLastname.png"></div>

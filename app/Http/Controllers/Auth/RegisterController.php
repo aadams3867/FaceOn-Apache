@@ -11,7 +11,10 @@ use Illuminate\Http\Request;
 use Illuminate\Contracts\Filesystem\Filesystem;
 use Input;
 use App;
-use App\Kairos;
+use App\Http\Controllers\KairosController;
+use Illuminate\Support\Facades\Lang;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
 {
@@ -28,8 +31,7 @@ class RegisterController extends Controller
 
     use RegistersUsers;
 
-    public $url;
-    public $kairos;
+    public $url, $kairos, $validPhoto, $errorCode;
 
     /**
      * Where to redirect users after registration.
@@ -46,6 +48,47 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+    }
+
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function register(Request $request)
+    {
+        GLOBAL $validPhoto, $errorCode;
+
+        $this->validator($request->all())->validate();      // Validates the usual credentials
+
+        $this->validatePhotoID($request);                   // Validates the Photo ID of the registrant
+
+        if ($validPhoto == true) {      // Good Photo ID!
+
+            event(new Registered($user = $this->create($request->all())));
+
+            $this->guard()->login($user);
+
+            return $this->registered($request, $user)
+                ?: redirect($this->redirectPath());
+        } else {                        // Bad Photo ID!
+            if ($errorCode == 5002) {
+                // No Faces found in Photo ID submitted
+                return redirect()->back()
+                    ->withInput()
+                    ->withErrors(['image' =>
+                        Lang::get('validation.custom.validatePhoto.noFaces'),
+                    ]);
+            } else if ($errorCode == 5010) {
+                // Too Many Faces found in Photo ID submitted
+                return redirect()->back()
+                    ->withInput()
+                    ->withErrors(['image' =>
+                        Lang::get('validation.custom.validatePhoto.tooManyFaces'),
+                    ]);
+            }
+        }
     }
 
     /**
@@ -66,58 +109,27 @@ class RegisterController extends Controller
     }
 
     /**
+     * Get the needed authorization credentials from the request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return bool
+     */
+    protected function validatePhotoID(Request $request)
+    {
+        GLOBAL $validPhoto;
+
+        return $validPhoto = KairosController::register($request);
+    }
+
+    /**
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return User or \Illuminate\Http\RedirectResponse
+     * @return User
      */
     protected function create(array $data)
     {
-        GLOBAL $url, $kairos;
-
-        // Upload the image file to Amazon S3
-        RegisterController::uploadFileToS3($data['gallery_name'], $data['image']);
-
-        // Set up Kairos object with credentials
-        $kairos = new Kairos(config('kairos_app.id'), config('kairos_app.key'));
-
-        // Setup up array of data to submit to Kairos
-        $argumentArray = array(
-            'image' => $url,
-            'subject_id' => $data['name'],
-            'gallery_name' => $data['gallery_name']
-        );
-
-        // Enroll the image with Kairos for later facial recognition
-        $response = $kairos->enroll($argumentArray);
-
-        // Reformat the response
-        $jsonDecoded = json_decode($response, true);
-
-        // Validate Photo ID for facial recognition
-        if (array_key_exists('Errors', $jsonDecoded)) {
-            $errorCode = $jsonDecoded['Errors'][0]['ErrCode'];
-
-            if ($errorCode == 5002) {
-                // No Faces found in Photo ID submitted
-                return redirect()->back()
-                    ->withInput($data->only(['name', 'email', 'gallery_name']))
-                    ->withErrors(['image' =>
-                        Lang::get('validation.custom.validatePhoto.noFaces'),
-                    ]);
-            } else if ($errorCode == 5010) {
-                // Too Many Faces found in Photo ID submitted
-                return redirect()->back()
-                    ->withInput($data->only(['name', 'email', 'gallery_name']))
-                    ->withErrors(['image' =>
-                        Lang::get('validation.custom.validatePhoto.tooManyFaces'),
-                    ]);
-        }
-
-        // for debugging only
-/*        var_dump($response);
-        ?><br><br><?php
-        die;*/
+        GLOBAL $url;
 
         // Create the new user in the db
         return User::create([
@@ -127,36 +139,6 @@ class RegisterController extends Controller
             'image' => $url,
             'gallery_name' => $data['gallery_name'],
         ]);
-    }
-
-    /**
-     * Upload image file to Amazon S3.
-     *
-     * @param string $gallery (User gallery name)
-     * @param object $img (initial image data)
-     */
-    public static function uploadFileToS3($gallery, $img)
-    {
-        GLOBAL $url;
-
-        // Create an S3 Client object
-        $s3 = App::make('aws')->createClient('s3');
-
-        // Assemble the 'gallery directory / prefixed file name' for S3
-        $key = $gallery . '/' . time() . '_' . $img->getClientOriginalName();
-
-        // Send a PutObject request to upload the file to S3
-        $s3->putObject([
-            'Bucket' => config('filesystems.disks.s3.bucket'),
-            //'Bucket' => 'face-on-bucket',
-            'Key'    => $key,
-            'SourceFile'   => $img->getRealPath(),
-            'ContentType'   => $img->getMimeType(),
-            'ContentDisposition'   => '',          
-        ]);
-
-        // Assemble the URL for storing in the user table in the db, etc.
-        $url = $s3->getObjectUrl('face-on-bucket', $key);
     }
 
 }

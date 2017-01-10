@@ -69,7 +69,7 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return User
+     * @return User or \Illuminate\Http\RedirectResponse
      */
     protected function create(array $data)
     {
@@ -90,6 +90,29 @@ class RegisterController extends Controller
 
         // Enroll the image with Kairos for later facial recognition
         $response = $kairos->enroll($argumentArray);
+
+        // Reformat the response
+        $jsonDecoded = json_decode($response, true);
+
+        // Validate Photo ID for facial recognition
+        if (array_key_exists('Errors', $jsonDecoded)) {
+            $errorCode = $jsonDecoded['Errors'][0]['ErrCode'];
+
+            if ($errorCode == 5002) {
+                // No Faces found in Photo ID submitted
+                return redirect()->back()
+                    ->withInput($data->only(['name', 'email', 'gallery_name']))
+                    ->withErrors(['image' =>
+                        Lang::get('validation.custom.validatePhoto.noFaces'),
+                    ]);
+            } else if ($errorCode == 5010) {
+                // Too Many Faces found in Photo ID submitted
+                return redirect()->back()
+                    ->withInput($data->only(['name', 'email', 'gallery_name']))
+                    ->withErrors(['image' =>
+                        Lang::get('validation.custom.validatePhoto.tooManyFaces'),
+                    ]);
+        }
 
         // for debugging only
 /*        var_dump($response);

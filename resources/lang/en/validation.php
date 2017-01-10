@@ -100,9 +100,10 @@ return [
     'custom' => [
 /*        'attribute-name' => [
             'rule-name' => 'custom-message',*/
-/*        'validateFace' => [
-            'failed' => 'The submitted image does not match our records.',*/
-/*        ],*/
+        'validatePhoto' => [
+            'noFaces' => 'We could not find a face in the submitted image.',
+            'tooManyFaces' => 'We found too many faces in the submitted image.',
+        ],
     ],
 
     /*

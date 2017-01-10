@@ -1,6 +1,18 @@
 <?php
+/*
+|--------------------------------------------------------------------------
+| Switching between Dev and Production Modes
+|--------------------------------------------------------------------------
+|
+| For Dev Mode, comment out lines 15, and switch comment out 43, and 73-76.
+| Go to 'app.php' and change App Debug Mode to 'true'.
+|
+| For Production Mode, uncomment line 15, and switch comment out 44, and 77-80.
+| Go to 'app.php' and change App Debug Mode to 'false'.
+|
+*/
 
-/*$url = parse_url(getenv("CLEARDB_DATABASE_URL"));*/
+$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 
 return [
 
@@ -28,8 +40,8 @@ return [
     |
     */
 
-    /*'default' => 'mysql',*/
-    'default' => env('DB_CONNECTION', 'mysql'),
+    'default' => 'mysql',
+    /*'default' => env('DB_CONNECTION', 'mysql'),*/
 
     /*
     |--------------------------------------------------------------------------
@@ -58,14 +70,14 @@ return [
         'mysql' => [
             'driver' => 'mysql',
             'port' => env('DB_PORT', '3306'),
-            /*'host' => $url["host"],
+            'host' => $url["host"],
             'database' => substr($url["path"], 1),
             'username' => $url["user"],
-            'password' => $url["pass"],*/
-            'host' => env('DB_HOST', 'localhost'),
+            'password' => $url["pass"],
+            /*'host' => env('DB_HOST', 'localhost'),
             'database' => env('DB_DATABASE', 'forge'),
             'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
+            'password' => env('DB_PASSWORD', ''),*/
             'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix' => '',

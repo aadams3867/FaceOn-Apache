@@ -109,22 +109,33 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-8 panel-display camera-panel col-md-offset-2">
-                <!-- Video display -->
-                <div class="panel panel-default">
-                    <div class="panel-heading">Image Capture</div>
-                    <div class="panel-body camera-panel-body">
-                        <div class="col-md-6">
-                            <video id="video-stream"></video>
-                            <p><button type="button" id="snapPic" class="btn btn-primary"><img src="/images/camerai.png" alt="Camera icon"></button></p>
-                        </div>
-                        <div class="col-md-6">
-                            <div><canvas id="capture"></canvas></div>
-                            <div><img id="canvasImg" alt="Right-click the img and save as FirstnameLastname.png"></div>
+
+            <?php
+                // Instantiate the class to detect mobile devices (phones or tablets).
+                $detect = new Mobile_Detect;
+
+                // If a desktop/laptop is being used (is NOT Mobile), display the Camera Panel to take a pic.
+                if ( !$detect->isMobile() ) {
+                    ?>
+                    <div class="col-md-8 panel-display camera-panel col-md-offset-2">
+                        <!-- Video display -->
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Image Capture</div>
+                            <div class="panel-body camera-panel-body">
+                                <div class="col-md-6">
+                                    <video id="video-stream"></video>
+                                    <p><button type="button" id="snapPic" class="btn btn-primary"><img src="/images/camerai.png" alt="Camera icon"></button></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <div><canvas id="capture"></canvas></div>
+                                    <div><img id="canvasImg" alt="Right-click the img and save as FirstnameLastname.png"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                    <?php
+                }
+            ?>
         </div>
     </div>
 </section>

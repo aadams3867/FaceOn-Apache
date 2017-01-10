@@ -90,7 +90,6 @@
 
             <?php
                 // Instantiate the class to detect mobile devices (phones or tablets).
-                // require_once 'Mobile_Detect.php';
                 $detect = new Mobile_Detect;
 
                 // If a desktop/laptop is being used (is NOT Mobile), display the Camera Panel to take a pic.

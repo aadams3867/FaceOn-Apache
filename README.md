@@ -27,19 +27,21 @@ This is a solo project.
 
 ## Schedule for Completion
 
-11/24/16 - Amazon S3 API learned and implemented in basic website.
+12/03/16 - Amazon S3 API learned and implemented in basic website.
 
-11/26/16 - Db and login setup complete.
+12/07/16 - MySQL Database and PHP/Laravel Custom Log On (Validation, Authentication, Middleware) setup complete.
 
-11/28/16 - Facial Recognition API learned and implemented in basic website.
+12/09/16 - Kairos Facial Recognition API learned and implemented in basic website.
 
-11/30/16 - Integration of the two APIs mostly complete.  Bug squashing time.
+12/12/16 - HTML5 Camera getUserMedia API learned and implemented in basic website.
 
-12/3/16 - Working App!  Polishing Front End starts.
+12/15/16 - Working App!  Polishing Front End starts.
 
-12/10/16 - Cross-browser and mobile device compatibility testing.
+12/17/16 - Class Presentation Day!
 
-12/17/16 - Presentation time!
+01/07/16 - Cross-browser and mobile device compatibility testing.
+
+01/11/17 - Demo Day!
 
 ## GitHub Repo
 

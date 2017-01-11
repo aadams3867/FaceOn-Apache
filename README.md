@@ -3,6 +3,12 @@
 #### Use the power of facial recognition to log on faster, more securely, and with less hassle than fingerprint identification or phone number verification.
 ----------
 
+#### **Note**:
+This app uses the getUserMedia API, which only Chrome and Firefox support at this time.
+IE and Safari do not support it.  Opera may support it partially.
+
+----------
+
 ## Design Layout
 
 ![Splash Page](https://cloud.githubusercontent.com/assets/18515426/21333949/98492c86-c621-11e6-869f-c27c007988ba.png)
@@ -31,7 +37,7 @@ This is a solo project.
 
 12/3/16 - Working App!  Polishing Front End starts.
 
-12/10/16 - If there's time, add a mini-game using facial recognition.
+12/10/16 - Cross-browser and mobile device compatibility testing.
 
 12/17/16 - Presentation time!
 
